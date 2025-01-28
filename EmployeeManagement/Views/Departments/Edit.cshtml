@@ -1,0 +1,49 @@
+﻿@model EmployeeManagement.Models.Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="card-title text-center">Edit Department</h1>
+
+
+        <form asp-action="Edit" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+
+            <!-- Department Name -->
+            <div class="mb-3">
+                <label asp-for="DepartmentName" class="form-label">Department Name</label>
+                <input asp-for="DepartmentName" class="form-control" placeholder="Enter department name" />
+                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+            </div>
+
+            <!-- Manager -->
+            <div class="mb-3">
+                <label asp-for="ManagerId" class="form-label">Manager</label>
+                <select asp-for="ManagerId" class="form-select" asp-items="@(new SelectList(ViewBag.Employees, "Id", "Name"))">
+                    <option value="">-- Select Manager --</option>
+                </select>
+                <span asp-validation-for="ManagerId" class="text-danger"></span>
+            </div>
+
+            <!-- Budget -->
+            <div class="mb-3">
+                <label asp-for="Budget" class="form-label">Budget</label>
+                <input asp-for="Budget" type="number" class="form-control" placeholder="Enter budget amount" />
+                <span asp-validation-for="Budget" class="text-danger"></span>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

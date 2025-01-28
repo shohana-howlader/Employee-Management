@@ -16,7 +16,7 @@
             top: 0;
             left: 0;
             bottom: 0;
-            width: 285px;
+            width: 290px;
             background-color: #343a40;
             padding-top: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -48,7 +48,7 @@
             }
         /* Content Area */
         .content-area {
-            margin-left: 290px;
+            margin-left: 295px;
             padding: 20px;
         }
         /* Button spacing */
@@ -100,11 +100,14 @@
         </div>
 
         <!-- Content Area -->
-        <div class="content-area">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+        <div class="container">
+            <div class="content-area">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
         </div>
+       
     </div>
 
     <footer class="border-top footer text-muted">

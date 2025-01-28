@@ -1,0 +1,46 @@
+﻿ @model IEnumerable<dynamic>
+@* @model IEnumerable<Employee_Management.Models.VM.DepartmentPerformanceViewModel>  *@
+
+
+@{
+    ViewData["Title"] = "Department Performance Scores";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">Department Performance Scores</h1>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Department Name</th>
+                        <th class="text-center">Average Performance Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var department in Model)
+                        {
+                            <tr>
+                                <td>@department.DepartmentName</td>
+                                <td class="text-center">
+                                    @String.Format("{0:F2}", department.AverageScore)
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center text-muted">
+                                No performance scores available.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
