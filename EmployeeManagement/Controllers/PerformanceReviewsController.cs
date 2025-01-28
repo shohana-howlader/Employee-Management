@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using EmployeeManagement.Models.VM;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -117,52 +118,44 @@ namespace EmployeeManagement.Controllers
         }
 
 
-        //public ActionResult PerformanceScores()
-        //{
-        //    var departmentScores = GetDepartmentPerformanceScores();
-        //    return View(departmentScores);
-        //}
+        public ActionResult PerformanceScores()
+        {
+            var departmentScores = GetDepartmentPerformanceScores();
+            return View(departmentScores);
+        }
 
-        //private List<DepartmentPerformanceScore> GetDepartmentPerformanceScores()
-        //{
-        //    var scores = new List<DepartmentPerformanceScore>();
+        private List<DepartmentPerformanceScore> GetDepartmentPerformanceScores()
+        {
+            var scores = new List<DepartmentPerformanceScore>();
 
-        //    var connectionString = _configuration.GetConnectionString("DefaultConnection");
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-        //    using (var connection = new SqlConnection(connectionString))
-        //    {
-        //        using (var command = new SqlCommand("[dbo].[GetDepartmentPerformanceScores]", connection))
-        //        {
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            connection.Open();
-        //            using (var reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    scores.Add(new DepartmentPerformanceScore
-        //                    {
-        //                        Id = reader.GetInt32(0),
-        //                        DepartmentName = reader.GetString(1),
-        //                        // Safely convert the ReviewScore to decimal, assuming it's returned as an int
-        //                        AverageScore = reader.IsDBNull(2) ? 0 : Convert.ToDecimal(reader.GetInt32(2))
-        //                    });
-        //                }
-        //            }
-        //        }
-        //    }
+            using (var connection = new SqlConnection(connectionString))
+            {
+                using (var command = new SqlCommand("[dbo].[GetDepartmentPerformanceScores]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            scores.Add(new DepartmentPerformanceScore
+                            {
+                                Id = reader.GetInt32(0),
+                                DepartmentName = reader.GetString(1),
+                                // Safely convert the ReviewScore to decimal, assuming it's returned as an int
+                                AverageScore = reader.IsDBNull(2) ? 0 : Convert.ToDecimal(reader.GetInt32(2))
+                            });
+                        }
+                    }
+                }
+            }
 
-        //    return scores;
-        //}
+            return scores;
+        }
 
 
-        ////public async Task<IActionResult> DepartmentPerformance()
-        ////{
-        ////    var result = await _context.Departments
-        ////        .FromSqlRaw("EXEC GetDepartmentPerformanceScores")
-        ////        .ToListAsync();
-
-        ////    return View("DepartmentPerformance", result);
-        ////}
 
 
     }

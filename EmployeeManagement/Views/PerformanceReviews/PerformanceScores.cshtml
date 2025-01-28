@@ -1,0 +1,27 @@
+﻿@model List<EmployeeManagement.Models.VM.DepartmentPerformanceScore>
+
+@{
+    ViewBag.Title = "Department Performance Scores";
+}
+
+<h2>Department Performance Scores</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Department Name</th>
+            <th>Average Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var score in Model)
+        {
+            <tr>
+                <td>@score.Id</td>
+                <td>@score.DepartmentName</td>
+                <td>@score.AverageScore</td>
+            </tr>
+        }
+    </tbody>
+</table>

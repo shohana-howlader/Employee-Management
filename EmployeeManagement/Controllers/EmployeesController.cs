@@ -13,7 +13,7 @@ namespace EmployeeManagement.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string searchString, int page = 1, int pageSize = 5)
         {
             var employees = _context.Employees.Include(e => e.Department).AsQueryable();
 
