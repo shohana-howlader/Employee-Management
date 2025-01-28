@@ -1,0 +1,74 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="card-title text-center">Create Employee</h1>
+
+
+        <form asp-action="Create" class="mt-4">
+            <div class="row">
+                <!-- Name -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Name" class="form-label">Full Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" placeholder="Enter email address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Phone -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Phone" class="form-label">Phone Number</label>
+                    <input asp-for="Phone" class="form-control" placeholder="Enter phone number" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <!-- Position -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Position" class="form-label">Position</label>
+                    <input asp-for="Position" class="form-control" placeholder="Enter job position" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Department -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DepartmentId" class="form-label">Department</label>
+                    <select asp-for="DepartmentId" class="form-select" asp-items="@(new SelectList(ViewBag.Departments, "Id", "DepartmentName"))">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
+                <!-- Joining Date -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="JoiningDate" class="form-label">Joining Date</label>
+                    <input asp-for="JoiningDate" type="date" class="form-control" />
+                    <span asp-validation-for="JoiningDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-circle"></i> Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
